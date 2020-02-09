@@ -7,6 +7,18 @@ public class Mark {
 	public Long getId() {
 		return id;
 	}
+	public Mark(Long id, String description, Double score) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.score = score;
+	}
+	public Mark(){
+	}
+	@Override
+	public String toString() {
+		return "Mark [id=" + id + ", description=" + description + ", score=" + score + "]";
+	}
 	public void setId(Long id) {
 		this.id = id;
 	}
