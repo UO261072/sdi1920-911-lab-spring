@@ -2,7 +2,9 @@ package com.uniovi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,18 +20,39 @@ public class TeachersController {
 	private TeachersService teachersService;
 	
 	@RequestMapping("/teacher/list")
-	public String getList() {
-		return this.teachersService.getTeachers().toString();
+	public String getList(Model model) {
+		model.addAttribute("teacherList", teachersService.getTeachers() );
+		return "teacher/list";
 	}
 	
 	@RequestMapping(value="/teacher/add",method=RequestMethod.POST)
 	public String setTeacher(@ModelAttribute Teacher teacher) {
 		this.teachersService.addTeacher(teacher);
-		return "Ok";
+		return "redirect:/teacher/list";
 	}
-	@RequestMapping(value="/teacher/{dni}",method=RequestMethod.POST)
-	public String deleteTeacher(@ModelAttribute Teacher teacher) {
-		this.teachersService.addTeacher(teacher);
-		return "Ok";
+	@RequestMapping("/teacher/details/{id}")
+	public String getDetail(Model model, @PathVariable String id){
+		model.addAttribute("teacher", teachersService.getTeacher(id));
+		return "teacher/details";
+	}
+	@RequestMapping("/teacher/delete/{id}")
+	public String deleteTeacher(@PathVariable String id) {
+		teachersService.deleteTeacher(id);
+		return "redirect:/teacher/list";
+	}
+	@RequestMapping(value="/teacher/add")
+	public String getTeacher(){
+		return "teacher/add";
+	}
+	@RequestMapping(value="/teacher/edit/{id}")
+	public String getEdit(Model model, @PathVariable String id){
+		model.addAttribute("mark", teachersService.getTeacher(id));
+		return "teacher/edit";
+	}
+	@RequestMapping(value="/teacher/edit/{id}", method=RequestMethod.POST)
+	public String setEdit(Model model, @PathVariable String id, @ModelAttribute Teacher teacher){
+		teacher.setDni(id);
+		teachersService.addTeacher(teacher);
+		return "redirect:/teacher/details/"+id;
 	}
 }
