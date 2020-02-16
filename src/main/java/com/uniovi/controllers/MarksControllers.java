@@ -3,36 +3,38 @@ package com.uniovi.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.Mark;
 import com.uniovi.services.MarksService;
 
-@RestController
 @Controller
-public class MarksController {
+public class MarksControllers {
 
 	@Autowired //Inyectar el servicio
 	private MarksService marksService;
 
 	@RequestMapping("/mark/list")
 	public String getList(Model model){
-		model.addAttribute("markList", marksService.getMarks() );
+		model.addAttribute("markList",marksService.getMarks());
 		return "mark/list";
 	}
 	@RequestMapping(value="/mark/add", method=RequestMethod.POST )
 	public String setMark(@ModelAttribute Mark mark){
-		marksService.addMark(mark);
+		this.marksService.addMark(mark);
 		return "redirect:/mark/list";
 	}
 	@RequestMapping("/mark/details/{id}")
-	public String getDetail(Model model, @PathVariable Long id){
+	public String getDetail(Model model,@PathVariable Long id){
 		model.addAttribute("mark", marksService.getMark(id));
 		return "mark/details";
 	}
 	@RequestMapping("/mark/delete/{id}")
 	public String deleteMark(@PathVariable Long id) {
-		marksService.deleteMark(id);
+		this.marksService.deleteMark(id);
 		return "redirect:/mark/list";
 	}
 	@RequestMapping(value="/mark/add")
