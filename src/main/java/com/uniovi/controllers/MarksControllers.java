@@ -35,10 +35,10 @@ public class MarksControllers {
 	@RequestMapping(value="/mark/add", method=RequestMethod.POST )
 	public String setMark(@Validated Mark mark, BindingResult result){
 		
-		this.marksFormValidator.validate(mark,result);
+		marksFormValidator.validate(mark,result);
 		
 		if(result.hasErrors()) {
-			return "/mark/add";
+			return "mark/add";
 		}
 		this.marksService.addMark(mark);
 		return "redirect:/mark/list";
@@ -57,7 +57,7 @@ public class MarksControllers {
 	public String getMark(Model model){
 		model.addAttribute("usersList", usersService.getUsers());
 		model.addAttribute("mark",new Mark());
-		return "mark/add";
+		return "/mark/add";
 	}
 	
 	@RequestMapping(value="/mark/edit/{id}")

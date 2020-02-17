@@ -23,11 +23,11 @@ public class MarksFormValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		Mark mark=(Mark) target;
 		if(mark.getDescription().length()<20) {
-			errors.rejectValue("description", "Error.marks.description.lenght");
+			errors.rejectValue("{mark.description}", "Error.marks.description.lenght");
 		}
 		if(mark.getScore()<0||mark.getScore()>10) {
 			errors.rejectValue("score", "Error.marks.score.outOfRange");
-		}	
+		}
 	}
 
 }
