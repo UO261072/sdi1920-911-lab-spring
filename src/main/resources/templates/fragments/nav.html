@@ -11,12 +11,12 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="/mark/list">Ver Notas</a></li>
-				<li><a href="/mark/add">Agregar Nota</a></li>
-				<li><a href="/mark/filter">Filtrar</a></li>
+				<li class="active"><a href="/mark/list" th:text="#{marksView.message}">Ver Notas</a></li>
+				<li><a href="/mark/add" th:text="#{marksAdd.message}">Agregar Nota</a></li>
+				<li><a href="/mark/filter" th:text="#{filter.message}">Filtrar</a></li>
 				<li><a href="/">Home</a></li>
 				<li id="marks-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{marksManage.message}">
 					Gestión de notas<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
@@ -25,7 +25,7 @@
 					</ul>
 				</li>
 				<li id="users-menu" class="dropdown">
-					<a class="dropdown-toogle" data-toogle="dropdown" href="#">
+					<a class="dropdown-toogle" data-toogle="dropdown" href="#" th:text="#{userManage.message}">
 						Gestión de Usuarios<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
@@ -52,12 +52,17 @@
 								style="border: 0; float: left; margin-right: 15px" /> <span
 								th:text="#{language.es}">Español</span>
 						</a></li>
+						<li><a id="btnFrench" value="FR"> <img
+								th:src="@{/img/if_spain_flag.png}"
+								style="border: 0; float: left; margin-right: 15px" /> <span
+								th:text="#{language.fr}">Frances</span>
+						</a></li>
 					</ul></li>
 				<li><a href="/signup"> <span
-						class="glyphicon glyphicon-user"></span> Registrate
+						class="glyphicon glyphicon-user" th:text="#{signup.message}">Registrate</span > 
 				</a></li>
 				<li><a href="/login"> <span
-						class="glyphicon glyphicon-log-in"></span> Identifícate
+						class="glyphicon glyphicon-log-in" th:text="#{login.message}">Identifícate</span > 
 				</a></li>
 			</ul>
 		</div>
