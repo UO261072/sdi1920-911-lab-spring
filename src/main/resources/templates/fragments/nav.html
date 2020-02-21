@@ -10,44 +10,52 @@
 			<img src="/img/student-48.png" alt="logo" />
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
 				<li><a href="/">Home</a></li>
-				<li id="marks-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{nav.marksManage.message}">
-					Gestión de notas<span class="caret"></span>
-					</a>
+				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"
+					th:text="#{nav.marksManage.message}"> Gestión de notas<span
+						class="caret"></span>
+				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add" th:text="#{nav.marksAdd.message}">Agregar Nota</a></li>
-						<li><a href="/mark/list" th:text="#{nav.marksView.message}">Ver Notas</a></li>
-					</ul>
-				</li>
-				<li id="users-menu" class="dropdown">
-					<a class="dropdown-toogle" data-toogle="dropdown" href="#" th:text="#{nav.userManage.message}">
+						<li sec:authorize="hasRole('ROLE_PROFESSOR')"><a
+							href="/mark/add" th:text="#{nav.marksAdd.message}">Agregar
+								Nota</a></li>
+						<li><a href="/mark/list" th:text="#{nav.marksView.message}">Ver
+								Notas</a></li>
+					</ul></li>
+				<li id="users-menu" class="dropdown"><a class="dropdown-toogle"
+					data-toogle="dropdown" href="#" th:text="#{nav.userManage.message}">
 						Gestión de Usuarios<span class="caret"></span>
-					</a>
+				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add" th:text="#{nav.userAdd.message}">Agregar usuario</a></li>
-						<li><a href="/user/lsit" th:text="#{nav.userView.message}">Ver Usuario</a></li>
-					</ul>
-				</li>
-				<li id="marks-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{nav.teacherManage.message}">
-					Gestión de profesores<span class="caret"></span>
-					</a>
+						<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/add"
+							th:text="#{nav.userAdd.message}">Agregar usuario</a></li>
+						<li><a href="/user/lsit" th:text="#{nav.userView.message}">Ver
+								Usuario</a></li>
+					</ul></li>
+				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"
+					th:text="#{nav.teacherManage.message}"> Gestión de profesores<span
+						class="caret"></span>
+				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/teacher/add" th:text="#{nav.teacherAdd.message}">Agregar Profesor</a></li>
-						<li><a href="/teacher/list" th:text="#{nav.teacherView.message}">Ver Profesor</a></li>
-					</ul>
-				</li>
-				<li id="marks-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{nav.departamentManage.message}">
-					Gestión de departamentos<span class="caret"></span>
-					</a>
+						<li><a href="/teacher/add"
+							th:text="#{nav.teacherAdd.message}">Agregar Profesor</a></li>
+						<li><a href="/teacher/list"
+							th:text="#{nav.teacherView.message}">Ver Profesor</a></li>
+					</ul></li>
+				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"
+					th:text="#{nav.departamentManage.message}"> Gestión de
+						departamentos<span class="caret"></span>
+				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/department/add" th:text="#{nav.departamentAdd.message}">Agregar Departamento</a></li>
-						<li><a href="/department/list" th:text="#{nav.departamentView.message}">Ver Departamento</a></li>
-					</ul>
-				</li>
+						<li><a href="/department/add"
+							th:text="#{nav.departamentAdd.message}">Agregar Departamento</a></li>
+						<li><a href="/department/list"
+							th:text="#{nav.departamentView.message}">Ver Departamento</a></li>
+					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href="
@@ -73,11 +81,14 @@
 								th:text="#{language.fr}">Frances</span>
 						</a></li>
 					</ul></li>
-				<li><a href="/signup"> <span
-						class="glyphicon glyphicon-user" th:text="#{signup.message}">Registrate</span > 
+				<li sec:authorize="!isAuthenticated()"><a href="/signup"> <span
+						class="glyphicon glyphicon-user" th:text="#{signup.message}">Registrate</span>
 				</a></li>
-				<li><a href="/login"> <span
-						class="glyphicon glyphicon-log-in" th:text="#{login.message}">Identifícate</span > 
+				<li sec:authorize="!isAuthenticated()"><a href="/login"> <span
+						class="glyphicon glyphicon-log-in" th:text="#{login.message}">Identifícate</span>
+				</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="/logout"> <span
+						class="glyphicon glyphicon-log-out"></span> Desconectar
 				</a></li>
 			</ul>
 		</div>
