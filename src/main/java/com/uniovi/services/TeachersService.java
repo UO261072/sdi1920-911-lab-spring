@@ -22,13 +22,13 @@ public class TeachersService {
 		this.teacherRepository.findAll().forEach(teachers::add);
 		return teachers;
 	}
-	public Teacher getTeacher(String dni) {
-		return teacherRepository.findById(dni).get(); 
+	public Teacher getTeacher(Long id) {
+		return teacherRepository.findById(id).get(); 
 	}
 	public void addTeacher(Teacher teacher) {
 		this.teacherRepository.save(teacher);
 	}
-	public void deleteTeacher(String dni) {
-		this.teacherRepository.deleteById(dni);
+	public void deleteTeacher(Long id) {
+		this.teacherRepository.deleteById(id);
 	}
 }

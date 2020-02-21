@@ -1,33 +1,54 @@
 package com.uniovi.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Teacher {
-
+	
 	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@Column(unique=true)
 	private String dni;
 	private String name;
 	private String surname;
 	private String category;
 	
-	public String getId() {
-		return dni;
+	
+	
+	public Teacher(Long id, String dni, String name, String surname, String category) {
+		super();
+		this.id = id;
+		this.dni = dni;
+		this.name = name;
+		this.surname = surname;
+		this.category = category;
 	}
+	
 	public Teacher(String dni, String name, String surname, String category) {
 		super();
 		this.dni = dni;
-		this.name=name;
-		this.surname=surname;
-		this.category=category;
+		this.name = name;
+		this.surname = surname;
+		this.category = category;
 	}
+
 	public Teacher(){
 	}
 	@Override
 	public String toString() {
 		return "Teacher [id=" + dni + ", nombre=" + name + ", apellidos=" + surname + "categoria="+category+"]";
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	public String getDni() {
+		return dni;
 	}
 	public void setDni(String dni) {
 		this.dni = dni;

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uniovi.entities.Teacher;
 import com.uniovi.services.TeachersService;
 
-@RestController
+
 @Controller
 public class TeachersController {
 
@@ -31,12 +31,12 @@ public class TeachersController {
 		return "redirect:/teacher/list";
 	}
 	@RequestMapping("/teacher/details/{id}")
-	public String getDetail(Model model, @PathVariable String id){
+	public String getDetail(Model model, @PathVariable Long id){
 		model.addAttribute("teacher", teachersService.getTeacher(id));
 		return "teacher/details";
 	}
 	@RequestMapping("/teacher/delete/{id}")
-	public String deleteTeacher(@PathVariable String id) {
+	public String deleteTeacher(@PathVariable Long id) {
 		teachersService.deleteTeacher(id);
 		return "redirect:/teacher/list";
 	}
@@ -45,14 +45,18 @@ public class TeachersController {
 		return "teacher/add";
 	}
 	@RequestMapping(value="/teacher/edit/{id}")
-	public String getEdit(Model model, @PathVariable String id){
-		model.addAttribute("mark", teachersService.getTeacher(id));
+	public String getEdit(Model model, @PathVariable Long id){
+		model.addAttribute("teacher", teachersService.getTeacher(id));
 		return "teacher/edit";
 	}
 	@RequestMapping(value="/teacher/edit/{id}", method=RequestMethod.POST)
-	public String setEdit(Model model, @PathVariable String id, @ModelAttribute Teacher teacher){
-		teacher.setDni(id);
-		teachersService.addTeacher(teacher);
+	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute Teacher teacher){
+		Teacher original=this.teachersService.getTeacher(id);
+		original.setDni(teacher.getDni());
+		original.setCategory(teacher.getCategory());
+		original.setName(teacher.getName());
+		original.setSurname(teacher.getSurname());
+		teachersService.addTeacher(original);
 		return "redirect:/teacher/details/"+id;
 	}
 }
