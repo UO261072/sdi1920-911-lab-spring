@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Teacher {
@@ -18,23 +20,27 @@ public class Teacher {
 	private String surname;
 	private String category;
 	
+	@ManyToOne
+	@JoinColumn(name="department_id")
+	private Department department;
 	
-	
-	public Teacher(Long id, String dni, String name, String surname, String category) {
+	public Teacher(Long id, String dni, String name, String surname, String category,Department department) {
 		super();
 		this.id = id;
 		this.dni = dni;
 		this.name = name;
 		this.surname = surname;
 		this.category = category;
+		this.department=department;
 	}
 	
-	public Teacher(String dni, String name, String surname, String category) {
+	public Teacher(String dni, String name, String surname, String category,Department department) {
 		super();
 		this.dni = dni;
 		this.name = name;
 		this.surname = surname;
 		this.category = category;
+		this.department=department;
 	}
 
 	public Teacher(){
@@ -71,5 +77,14 @@ public class Teacher {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+	
 	
 }
