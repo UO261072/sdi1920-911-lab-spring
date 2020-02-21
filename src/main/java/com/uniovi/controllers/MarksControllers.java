@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.Mark;
 import com.uniovi.entities.User;
@@ -38,10 +39,15 @@ public class MarksControllers {
 	private MarksFormValidator marksFormValidator;
 
 	@RequestMapping("/mark/list")
-	public String getList(Model model, Principal principal){
+	public String getList(Model model, Principal principal, @RequestParam(value="",required=false) String searchText){
 		String dni = principal.getName(); // DNI es el name de la autenticación
 		User user = usersService.getUserByDni(dni);
-		model.addAttribute("markList", marksService.getMarksForUser(user) );
+		if(searchText!=null && !searchText.isEmpty()) {
+			model.addAttribute("marksList", marksService.searchMarksByDescriptionAndNameForUser(searchText, user));
+		}else {
+			model.addAttribute("markList", marksService.getMarksForUser(user));
+		}
+		
 		return "mark/list";
 	}
 	@RequestMapping(value="/mark/add", method=RequestMethod.POST )
