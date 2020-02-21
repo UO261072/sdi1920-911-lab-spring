@@ -8,14 +8,14 @@
 
 
 	<div class="container">
-		<h2>Detalles del profesor</h2>
+		<h2 th:text="#{teachers.details.message}">Detalles del profesor</h2>
 		<div class="panel panel-default">
-			<div class="panel-heading">Nombre</div>
+			<div class="panel-heading" th:text="#{teachers.name.message}">Nombre</div>
 			<div class="panel-body" th:text="${teacher.name}">
 				UO11111@uniovi.es</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Apellidos</div>
+			<div class="panel-heading" th:text="#{teachers.surname.message}">Apellidos</div>
 			<div class="panel-body" th:text="${teacher.surname}">100</div>
 		</div>
 		<div class="panel panel-default">
@@ -24,7 +24,7 @@
 				UO11111@uniovi.es</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Categoria</div>
+			<div class="panel-heading" th:text="#{teachers.category.message}">Categoria</div>
 			<div class="panel-body" th:text="${teacher.category}">100</div>
 		</div>
 	</div>

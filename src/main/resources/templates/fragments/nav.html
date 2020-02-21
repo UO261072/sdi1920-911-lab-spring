@@ -11,44 +11,41 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="/mark/list" th:text="#{marksView.message}">Ver Notas</a></li>
-				<li><a href="/mark/add" th:text="#{marksAdd.message}">Agregar Nota</a></li>
-				<li><a href="/mark/filter" th:text="#{filter.message}">Filtrar</a></li>
 				<li><a href="/">Home</a></li>
 				<li id="marks-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{marksManage.message}">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{nav.marksManage.message}">
 					Gestión de notas<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add">Agregar Nota</a></li>
-						<li><a href="/mark/list">Ver Notas</a></li>
+						<li><a href="/mark/add" th:text="#{nav.marksAdd.message}">Agregar Nota</a></li>
+						<li><a href="/mark/list" th:text="#{nav.marksView.message}">Ver Notas</a></li>
 					</ul>
 				</li>
 				<li id="users-menu" class="dropdown">
-					<a class="dropdown-toogle" data-toogle="dropdown" href="#" th:text="#{userManage.message}">
+					<a class="dropdown-toogle" data-toogle="dropdown" href="#" th:text="#{nav.userManage.message}">
 						Gestión de Usuarios<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add">Agregar usuario</a></li>
-						<li><a href="/user/lsit">Ver Usuario</a></li>
+						<li><a href="/user/add" th:text="#{nav.userAdd.message}">Agregar usuario</a></li>
+						<li><a href="/user/lsit" th:text="#{nav.userView.message}">Ver Usuario</a></li>
 					</ul>
 				</li>
 				<li id="marks-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{marksManage.message}">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{nav.teacherManage.message}">
 					Gestión de profesores<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/teacher/add">Agregar Profesor</a></li>
-						<li><a href="/teacher/list">Ver Profesor</a></li>
+						<li><a href="/teacher/add" th:text="#{nav.teacherAdd.message}">Agregar Profesor</a></li>
+						<li><a href="/teacher/list" th:text="#{nav.teacherView.message}">Ver Profesor</a></li>
 					</ul>
 				</li>
 				<li id="marks-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{marksManage.message}">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{nav.departamentManage.message}">
 					Gestión de departamentos<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/department/add">Agregar Departamento</a></li>
-						<li><a href="/department/list">Ver Departamento</a></li>
+						<li><a href="/department/add" th:text="#{nav.departamentAdd.message}">Agregar Departamento</a></li>
+						<li><a href="/department/list" th:text="#{nav.departamentView.message}">Ver Departamento</a></li>
 					</ul>
 				</li>
 			</ul>

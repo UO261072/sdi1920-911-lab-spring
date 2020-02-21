@@ -8,14 +8,14 @@
 
 
 	<div class="container">
-		<h2>Profesores</h2>
-		<p>Los profesores que actualmente figuran en el sistema son los
+		<h2 th:text="#{departments.departments.message}">Profesores</h2>
+		<p th:text="#{departments.list.message}">Los profesores que actualmente figuran en el sistema son los
 			siguientes:</p>
 		<div class="table-responsive">
 			<table class="table table-hover" th:fragment="tableTeachers" id="tableTeachers">
 				<thead>
 					<tr>
-						<th class="col-md-1">Descricion</th>
+						<th class="col-md-1" th:text="#{departments.description.message}">Descricion</th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
@@ -24,9 +24,9 @@
 				<tbody>
 					<tr th:each="department : ${departmentList}">
 						<td th:text="${department.description}">1</td>
-						<td><a th:href="${'/department/details/' + department.id}">detalles</a></td>
-						<td><a th:href="${'/department/edit/' + department.id}">modificar</a></td>
-						<td><a th:href="${'/department/delete/' + department.id}">eliminar</a></td>
+						<td><a th:href="${'/department/details/' + department.id}" th:text="#{list.details.message}">detalles</a></td>
+						<td><a th:href="${'/department/edit/' + department.id}" th:text="#{list.modify.message}">modificar</a></td>
+						<td><a th:href="${'/department/delete/' + department.id}" th:text="#{list.remove.message}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>

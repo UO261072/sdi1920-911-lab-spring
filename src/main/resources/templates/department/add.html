@@ -6,10 +6,10 @@
 	<nav th:replace="fragments/nav" />
 
 	<div class="container">
-		<h2>Agregar Departamento</h2>
+		<h2 th:text="#{departments.addDepartment.message}">Agregar Departamento</h2>
 		<form class="form-horizontal" method="post" action="/department/add" th:object="${department}">
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="description">Descripcion:</label>
+				<label class="control-label col-sm-2" for="description" th:text="#{departments.description.message}">Descripcion:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="description"
 						placeholder="Pepe" required="true" />
@@ -17,7 +17,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-primary">Enviar</button>
+					<button type="submit" class="btn btn-primary" th:text="#{form.send.message}">Enviar</button>
 				</div>
 			</div>
 		</form>
