@@ -31,8 +31,8 @@
 						<td th:text="${teacher.dni}">10</td>
 						<td th:text="${teacher.category}">10</td>
 						<td><a th:href="${'/teacher/details/' + teacher.id}" th:text="#{list.details.message}">detalles</a></td>
-						<td><a th:href="${'/teacher/edit/' + teacher.id}" th:text="#{list.modify.message}">modificar</a></td>
-						<td><a th:href="${'/teacher/delete/' + teacher.id}" th:text="#{list.remove.message}">eliminar</a></td>
+						<td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/teacher/edit/' + teacher.id}" th:text="#{list.modify.message}">modificar</a></td>
+						<td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/teacher/delete/' + teacher.id}" th:text="#{list.remove.message}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
