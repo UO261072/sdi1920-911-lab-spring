@@ -1,4 +1,7 @@
 package com.uniovi.controllers;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,8 +31,14 @@ public class UsersController {
 
 
 	@RequestMapping("/user/list" )
-	public String getListado(Model model){
-		model.addAttribute("usersList", usersService.getUsers());
+	public String getListado(Model model,@RequestParam(value="",required=false) String searchText){
+		List<User> users=new LinkedList<User>();
+		if(searchText!=null && !searchText.isEmpty()) {
+			users= this.usersService.searchByNameAndSurname(searchText);
+		}else {
+			users=this.usersService.getUsers();
+		}
+		model.addAttribute("usersList", users);
 		return "user/list";
 	}
 	@RequestMapping(value="/user/add")
