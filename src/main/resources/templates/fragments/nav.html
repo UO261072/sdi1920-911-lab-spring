@@ -14,7 +14,7 @@
 				<li><a href="/">Home</a></li>
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"
-					th:text="#{nav.marksManage.message}"> Gestión de notas<span
+					th:text="#{nav.marksManage.message}"> GestiÃ³n de notas<span
 						class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
@@ -26,17 +26,17 @@
 					</ul></li>
 				<li id="users-menu" class="dropdown"><a class="dropdown-toogle"
 					data-toogle="dropdown" href="#" th:text="#{nav.userManage.message}">
-						Gestión de Usuarios<span class="caret"></span>
+						GestiÃ³n de Usuarios<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
 						<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/add"
 							th:text="#{nav.userAdd.message}">Agregar usuario</a></li>
-						<li><a href="/user/lsit" th:text="#{nav.userView.message}">Ver
+						<li><a href="/user/list" th:text="#{nav.userView.message}">Ver
 								Usuario</a></li>
 					</ul></li>
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"
-					th:text="#{nav.teacherManage.message}"> Gestión de profesores<span
+					th:text="#{nav.teacherManage.message}"> GestiÃ³n de profesores<span
 						class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
@@ -47,7 +47,7 @@
 					</ul></li>
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"
-					th:text="#{nav.departamentManage.message}"> Gestión de
+					th:text="#{nav.departamentManage.message}"> GestiÃ³n de
 						departamentos<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
@@ -68,12 +68,12 @@
 						<li><a id="btnEnglish" value="EN"> <img
 								th:src="@{/img/if_uk_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
-								th:text="#{language.en}">Inglés</span>
+								th:text="#{language.en}">InglÃ©s</span>
 						</a></li>
 						<li><a id="btnSpanish" value="ES"> <img
 								th:src="@{/img/if_spain_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
-								th:text="#{language.es}">Español</span>
+								th:text="#{language.es}">EspaÃ±ol</span>
 						</a></li>
 						<li><a id="btnFrench" value="FR"> <img
 								th:src="@{/img/if_spain_flag.png}"
@@ -85,7 +85,7 @@
 						class="glyphicon glyphicon-user" th:text="#{signup.message}">Registrate</span>
 				</a></li>
 				<li sec:authorize="!isAuthenticated()"><a href="/login"> <span
-						class="glyphicon glyphicon-log-in" th:text="#{login.message}">Identifícate</span>
+						class="glyphicon glyphicon-log-in" th:text="#{login.message}">IdentifÃ­cate</span>
 				</a></li>
 				<li sec:authorize="isAuthenticated()"><a href="/logout"> <span
 						class="glyphicon glyphicon-log-out"></span> Desconectar
