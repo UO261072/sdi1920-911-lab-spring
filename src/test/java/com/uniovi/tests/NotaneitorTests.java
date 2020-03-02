@@ -8,7 +8,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 
+
+import com.uniovi.services.TeachersService;
 import com.uniovi.tests.pageobjects.PO_AddUser;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
@@ -35,6 +38,8 @@ public class NotaneitorTests {
 	//Común a Windows y a MACOSX
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
+	
+
 
 	public static WebDriver getDriver(String PathFirefox, String Geckdriver) {
 		System.setProperty("webdriver.firefox.bin", PathFirefox);
@@ -304,9 +309,9 @@ public class NotaneitorTests {
 		//Entramos como administrador
 		PO_LoginView.fillForm(driver, "99999988F", "123456");
 		//Vamos a añadir usuario
-		List<WebElement> elementos=PO_View.checkElement(driver, "free", "//li[contains(@id, 'users-menu')]/a");
+		List<WebElement> elementos=PO_View.checkElement(driver, "free", "//li[contains(@id, 'teacher-menu')]/a");
 		elementos.get(0).click();
-		elementos=PO_View.checkElement(driver, "free", "//a[contains(@href,'user/add')]");
+		elementos=PO_View.checkElement(driver, "free", "//a[contains(@href,'teacher/add')]");
 		elementos.get(0).click();
 		//Rellenamos el formulario de añadir usuario
 		PO_AddUser.fillForm(driver, "99932188F", "1", "2", "123456", "123456");	
@@ -327,11 +332,16 @@ public class NotaneitorTests {
 		//Entramos como administrador
 		PO_LoginView.fillForm(driver, "99999988F", "123456");
 		//Vamos a listar usuario
-		List<WebElement> elementos=PO_View.checkElement(driver, "free", "//li[contains(@id, 'users-menu')]/a");
+		List<WebElement> elementos=PO_View.checkElement(driver, "free", "//li[contains(@id, 'teacher-menu')]/a");
 		elementos.get(0).click();
-		elementos=PO_View.checkElement(driver, "free", "//a[contains(@href,'user/list')]");
+		elementos=PO_View.checkElement(driver, "free", "//a[contains(@href,'teacher/list')]");
 		elementos.get(0).click();
-		//
+		SeleniumUtils.esperarSegundos(driver, 5);
+		//Obtener numero de profesores
+		elementos = SeleniumUtils.EsperaCargaPagina(driver, "free",
+				"//tbody/tr", PO_View.getTimeout());
+		assertTrue(elementos.size() == 1);
+		
 	}
 
 
