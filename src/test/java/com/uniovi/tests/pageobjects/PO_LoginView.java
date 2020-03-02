@@ -16,7 +16,7 @@ public class PO_LoginView extends PO_NavView {
 		pasword.clear();
 		pasword.sendKeys(passwordp);
 		
-		By button=By.className("btn btn-primary");
+		By button=By.className("btn");
 		driver.findElement(button).click();
 	}
 

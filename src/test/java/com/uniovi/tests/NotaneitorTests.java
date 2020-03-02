@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.uniovi.tests.pageobjects.PO_AddUser;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
@@ -20,12 +21,14 @@ import com.uniovi.util.SeleniumUtils;
 import org.junit.runners.MethodSorters;
 //Prueba
 //Ordenamos las pruebas por el nombre del método
+//https://bit.ly/39fY3rA
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class NotaneitorTests {
 	//En Windows (Debe ser la versión 65.0.1 y desactivar las actualizacioens automáticas)):
 	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	static String Geckdriver024 = "C:\\Users\\monon\\Downloads\\PL-SDI-Sesión5-material\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
+	//static String Geckdriver024 = "C:\\Users\\monon\\Downloads\\PL-SDI-Sesión5-material\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
+	static String Geckdriver024 = "C:\\Users\\UO261072\\Downloads\\PL-SDI-Sesión5-material\\PL-SDI-Sesio╠ün5-material\\geckodriver024win64.exe";
 	//En MACOSX (Debe ser la versión 65.0.1 y desactivar las actualizacioens automáticas):
 	//static String PathFirefox65 = "/Applications/Firefox.app/Contents/MacOS/firefox-bin";
 	//static String Geckdriver024 = "/Users/delacal/selenium/geckodriver024mac";
@@ -267,6 +270,70 @@ public class NotaneitorTests {
 		//Ahora nos desconectamos
 		PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
 	}
+
+
+	//Registro valido con profesor
+	@Test
+	public void PR16() {
+		//Vamos al formulario de logeo
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Entramos como administrador
+		PO_LoginView.fillForm(driver, "99999988F", "123456");
+		//Vamos a añadir usuario
+		List<WebElement> elementos=PO_View.checkElement(driver, "free", "//li[contains(@id, 'teacher-menu')]/a");
+		elementos.get(0).click();
+		elementos=PO_View.checkElement(driver, "free", "//a[contains(@href,'teacher/add')]");
+		elementos.get(0).click();
+		//Rellenamos el formulario de añadir usuario
+		PO_AddUser.fillForm(driver, "99932188F", "Araragi", "Koyomi", "123456", "123456");	
+		//Nos desconectamos
+		PO_PrivateView.clickOption(driver, "logout", "text", "Desconectar");
+		//Vamos al formulario de logeo
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Entramos como el nuevo profesor
+		PO_LoginView.fillForm(driver, "99932188F", "123456");
+		//Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Notas del usuario");
+
+	}
+
+	@Test
+	public void PR17() {
+		//Vamos al formulario de logeo
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Entramos como administrador
+		PO_LoginView.fillForm(driver, "99999988F", "123456");
+		//Vamos a añadir usuario
+		List<WebElement> elementos=PO_View.checkElement(driver, "free", "//li[contains(@id, 'users-menu')]/a");
+		elementos.get(0).click();
+		elementos=PO_View.checkElement(driver, "free", "//a[contains(@href,'user/add')]");
+		elementos.get(0).click();
+		//Rellenamos el formulario de añadir usuario
+		PO_AddUser.fillForm(driver, "99932188F", "1", "2", "123456", "123456");	
+		//Nos desconectamos
+		PO_PrivateView.clickOption(driver, "logout", "text", "Desconectar");
+		//Vamos al formulario de logeo
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Entramos como el nuevo profesor
+		PO_LoginView.fillForm(driver, "99932188F", "123456");
+		//Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Notas del usuario");
+	}
+	//Modificar Profesor
+	@Test
+	public void PR18() {
+		//Vamos al formulario de logeo
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Entramos como administrador
+		PO_LoginView.fillForm(driver, "99999988F", "123456");
+		//Vamos a listar usuario
+		List<WebElement> elementos=PO_View.checkElement(driver, "free", "//li[contains(@id, 'users-menu')]/a");
+		elementos.get(0).click();
+		elementos=PO_View.checkElement(driver, "free", "//a[contains(@href,'user/list')]");
+		elementos.get(0).click();
+		//
+	}
+
 
 
 

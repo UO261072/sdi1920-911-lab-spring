@@ -29,14 +29,14 @@
 						GestiÃ³n de Usuarios<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/add"
+						<li ><!--  sec:authorize="hasRole('ROLE_ADMIN')"--><a href="/user/add"
 							th:text="#{nav.userAdd.message}">Agregar usuario</a></li>
 						<li><a href="/user/list" th:text="#{nav.userView.message}">Ver
 								Usuario</a></li>
 					</ul></li>
-				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
+				<li id="teacher-menu" class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"
-					th:text="#{nav.teacherManage.message}"> GestiÃ³n de profesores<span
+					th:text="#{nav.teacherManage.message}"> Gestion de profesores<span
 						class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
